@@ -14,7 +14,9 @@ return {
     { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
   },
   opts = {
+
     filesystem = {
+      --   follow_current_file = true,
       window = {
         mappings = {
           ['\\'] = 'close_window',

@@ -1,0 +1,35 @@
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = 'NvimTree*',
+  callback = function()
+    local api = require 'nvim-tree.api'
+    local view = require 'nvim-tree.view'
+
+    if not view.is_visible() then
+      api.tree.open()
+    end
+  end,
+})
+
+return {
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    keys = {
+      { '\\', ':NvimTreeToggle<cr>', { desc = 'NvimTree reveal' } },
+    },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_root = true,
+        },
+      }
+    end,
+  },
+}
